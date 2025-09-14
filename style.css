@@ -44,6 +44,7 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
 }
 .number {
+  font-size: 20px;
   border-radius: 5px;
   height: 50px;
   background-color: black;
