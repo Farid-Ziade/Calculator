@@ -3,19 +3,11 @@
 let board = document.querySelector(".board");
 let display = document.querySelector(".display");
 
-document.addEventListener("keypress", (e) => {
-  if (display.value.length <= 7) {
-    display.focus();
-  } else {
-    display.blur();
-  }
-});
-
 let array = [
   "(",
   ")",
   "C",
-  "<-",
+  "<",
   7,
   8,
   9,
@@ -39,15 +31,112 @@ for (let i = 0; i < 20; i++) {
   number.classList = "number";
   board.append(number);
 }
+let c = [];
+let result = 0;
 let button = document.querySelectorAll(".number");
-
 button.forEach((btn) => {
   btn.addEventListener("click", () => {
-    if (btn.innerText === "+") {
-      display.innerText += "+";
+    switch (btn.innerText) {
+      case "+":
+        display.innerText += "+";
+        break;
+      case "/":
+        display.innerText += "/";
+
+        break;
+      case "-":
+        display.innerText += "-";
+
+        break;
+      case "X":
+        display.innerText += "x";
+
+        break;
+      case "1":
+        display.innerText += 1;
+
+        break;
+      case "2":
+        display.innerText += 2;
+
+        break;
+      case "3":
+        display.innerText += 3;
+        break;
+      case "4":
+        display.innerText += 4;
+
+        break;
+      case "5":
+        display.innerText += 5;
+
+        break;
+      case "6":
+        display.innerText += 6;
+
+        break;
+      case "7":
+        display.innerText += 7;
+
+        break;
+      case "8":
+        display.innerText += 8;
+
+        break;
+      case "9":
+        display.innerText += 9;
+
+        break;
+      case "0":
+        display.innerText += 0;
+
+        break;
+      case "(":
+        display.innerText += "(";
+        break;
+      case ")":
+        display.innerText += ")";
+        break;
+      case ".":
+        if (display.innerText.includes(".")) {
+          return; // Don't allow adding another decimal point
+        }
+        display.innerText += ".";
+        //I was here 
+        break;
+        // console.log("hi", display.innerText[0]);
+        // if (display.innerText[display.innerText.length] === ".") {
+        //   return;
+        // } else {
+        //   display.innerText += ".";
+        // }
+        break;
+      case "C":
+        if (!display.innerText) {
+          return;
+        }
+        display.innerText = "";
+      case "=":
+        if (!display.innerText) {
+          return;
+        }
+        let o = display.innerText;
+        display.innerText = "";
+        display.innerText = eval(o);
+        console.log(o);
+        break;
+      case "<":
+        display.innerText = display.innerText.slice(
+          0,
+          display.innerText.length - 1
+        );
+        break;
+      default:
+        console.log("invalid");
     }
   });
-}); //to fix this function
+});
+console.log(c);
 
 function add(a, b) {
   return a + b;
@@ -61,3 +150,21 @@ function divide(a, b) {
 function multiply(a, b) {
   return a * b;
 }
+
+// document.addEventListener("keypress", () => {
+//   if (display.value.length <= 7) {
+//     display.focus();
+//     button.forEach((btn) => {
+//       btn.addEventListener("click", () => {
+//         if (btn.innerText === "+") {
+//           console.log("here");
+//           display.innerText += "+";
+//         }
+//       });
+//     });
+//   } else {
+//     display.blur();
+//     let displayNumber = display.value;
+//     console.log(displayNumber);
+//   }
+// });
