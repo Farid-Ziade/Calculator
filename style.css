@@ -50,3 +50,16 @@ h1 {
   background-color: black;
   color: white;
 }
+#equal,
+#positive,
+#multiply,
+#substract,
+#reset,
+#delete,
+#divide {
+  font-size: 20px;
+  border-radius: 5px;
+  height: 50px;
+  background-color: black;
+  color: white;
+}
