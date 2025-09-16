@@ -17,29 +17,33 @@ let current = "";
 
 button.forEach((btn) => {
   btn.addEventListener("click", () => {
-    current = Number(btn.textContent);
-    display.textContent = btn.textContent;
+    current += Number(btn.textContent);
+    display.textContent += btn.textContent;
     console.log(previous, current);
   });
 });
 positive.addEventListener("click", () => {
   previous = Number(current);
   display.textContent = "";
+  current = "";
   operator += "+";
 });
 negative.addEventListener("click", () => {
   previous = Number(current);
   display.textContent = "";
+  current = "";
   operator += "-";
 });
 division.addEventListener("click", () => {
   previous = Number(current);
   display.textContent = "";
+  current = "";
   operator += "/";
 });
 multiplication.addEventListener("click", () => {
   previous = Number(current);
   display.textContent = "";
+  current = "";
   operator += "*";
 });
 equal.addEventListener("click", () => {
