@@ -5,74 +5,39 @@ let display = document.querySelector(".display");
 let button = document.querySelectorAll(".number");
 let reset = document.getElementById("reset");
 let remove = document.getElementById("delete");
-let positive = document.getElementById("positive");
-let negative = document.getElementById("substract");
-let multiplication = document.getElementById("multiply");
-let equal = document.getElementById("equal");
-let division = document.getElementById("divide");
-
 let previous = "";
-let operator = "";
-let current = "";
+
+let result = 0;
 
 button.forEach((btn) => {
   btn.addEventListener("click", () => {
-    current += Number(btn.textContent);
-    display.textContent += btn.textContent;
-    console.log(previous, current);
+    let val = btn.textContent;
+    let operator = ["+", "-", "*", "/", "."];
+    let last = display.textContent.slice(-1);
+    if (operator.includes(val) && operator.includes(last)) {
+      return;
+    } else {
+      if (display.textContent === "" && operator.includes(val) && val !== "-") {
+        return;
+      } else {
+        display.textContent += btn.textContent;
+      }
+    }
   });
 });
-positive.addEventListener("click", () => {
-  previous = Number(current);
-  display.textContent = "";
-  current = "";
-  operator += "+";
-});
-negative.addEventListener("click", () => {
-  previous = Number(current);
-  display.textContent = "";
-  current = "";
-  operator += "-";
-});
-division.addEventListener("click", () => {
-  previous = Number(current);
-  display.textContent = "";
-  current = "";
-  operator += "/";
-});
-multiplication.addEventListener("click", () => {
-  previous = Number(current);
-  display.textContent = "";
-  current = "";
-  operator += "*";
-});
+
 equal.addEventListener("click", () => {
-  switch (operator[operator.length - 1]) {
-    case "+":
-      display.textContent = add(Number(previous), Number(current));
-      break;
-    case "-":
-      display.textContent = substract(Number(previous), Number(current));
-      break;
-    case "*":
-      display.textContent = multiply(Number(previous), Number(current));
-      break;
-    case "/":
-      display.textContent = divide(Number(previous), Number(current));
-      break;
-    default:
-      console.log("Error");
-  }
+  result = eval(display.textContent);
+  display.textContent = "";
+  display.textContent = result;
 });
-function add(a, b) {
-  return a + b;
-}
-function substract(a, b) {
-  return a - b;
-}
-function divide(a, b) {
-  return a / b;
-}
-function multiply(a, b) {
-  return a * b;
-}
+
+reset.addEventListener("click", () => {
+  display.textContent = "";
+});
+remove.addEventListener("click", () => {
+  display.textContent = display.textContent.slice(
+    0,
+    display.textContent.length - 1
+  );
+});
